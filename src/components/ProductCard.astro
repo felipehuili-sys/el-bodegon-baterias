@@ -1,0 +1,48 @@
+---
+// src/components/ProductCard.astro
+interface Props {
+  brand: string;
+  amps: string;
+  voltage: string;
+  warranty: string;
+  price: number;
+  image?: string;
+  recommendedFor: string;
+}
+
+const { brand, amps, voltage, warranty, price, recommendedFor } = Astro.props;
+---
+
+<div class="card h-100 shadow-sm border">
+  <div class="card-header bg-transparent text-center pt-3 border-0">
+    <span class="badge bg-secondary mb-1">{brand}</span>
+    <h3 class="h4 card-title">{amps} Ah - {voltage}V</h3>
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item d-flex justify-content-between px-0">
+        <span>Garantía:</span>
+        <strong class="text-success">{warranty}</strong>
+      </li>
+      <li class="list-group-item d-flex justify-content-between px-0">
+        <span>Ideal para:</span>
+        <small class="text-muted text-end">{recommendedFor}</small>
+      </li>
+    </ul>
+    <div class="text-center">
+      <h4 class="text-primary fw-bold display-6 mb-0">
+        ${price.toLocaleString()}
+      </h4>
+      <small class="text-muted">Incluye instalación básica</small>
+    </div>
+  </div>
+  <div class="card-footer bg-transparent border-0 pb-3">
+    <a
+      href={`https://wa.me/123456789?text=Hola,%20me%20interesa%20la%20bateria%20${brand}%20de%20${amps}Ah`}
+      class="btn btn-outline-primary w-100"
+      target="_blank"
+    >
+      <i class="bi bi-whatsapp"></i> Consultar Disponibilidad
+    </a>
+  </div>
+</div>

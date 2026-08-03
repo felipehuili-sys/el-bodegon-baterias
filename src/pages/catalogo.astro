@@ -1,0 +1,396 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+// Baterías con datos extendidos para el modal
+const baterias = [
+  {
+    id: "bat-01",
+    brand: "Troman",
+    amps: "45",
+    voltage: "12",
+    warranty: "12 Meses",
+    price: 45000,
+    pais: "Corea",
+    modelosCompatibles: "Yaris, Spark, Swift, Morning, March",
+    recommendedFor: "Autos compactos",
+    tecnologia: "Libre Mantenimiento (Calcio-Calcio)",
+    dimensiones: "207 x 175 x 175 mm"
+  },
+  {
+    id: "bat-02",
+    brand: "ACDelco",
+    amps: "55",
+    voltage: "12",
+    warranty: "15 Meses",
+    price: 52000,
+    pais: "",
+    modelosCompatibles: "Corsa, Gol, Palio, Uno, Accent",
+    recommendedFor: "Sedanes pequeños y Hatchbacks",
+    tecnologia: "Sellada de Alto Rendimiento",
+    dimensiones: "242 x 175 x 175 mm"
+  },
+  {
+    id: "bat-03",
+    brand: "Bosch",
+    amps: "60",
+    voltage: "12",
+    warranty: "18 Meses",
+    price: 68000,
+    pais: "Alemania",
+    modelosCompatibles: "Corolla, Sentra, Kicks, Civic, Cruze",
+    recommendedFor: "Sedanes y SUVs",
+    tecnologia: "PowerFrame / Libre Mantenimiento",
+    dimensiones: "242 x 175 x 190 mm"
+  },
+  {
+    id: "bat-04",
+    brand: "Premium",
+    amps: "70",
+    voltage: "12",
+    warranty: "18 Meses",
+    price: 75000,
+    pais: "Alemania",
+    modelosCompatibles: "Tucson, Sportage, RAV4, CX-5",
+    recommendedFor: "SUVs medianas",
+    tecnologia: "PowerFrame Silver",
+    dimensiones: "278 x 175 x 190 mm"
+  },
+  {
+    id: "bat-05",
+    brand: "TOPower",
+    amps: "75",
+    voltage: "12",
+    warranty: "24 Meses",
+    price: 88000,
+    pais: "",
+    modelosCompatibles: "Hilux, NP300, Ranger, D-Max, L200",
+    recommendedFor: "Camionetas y motores diésel",
+    tecnologia: "Reforzada para Trabajo Pesado",
+    dimensiones: "281 x 175 x 190 mm"
+  },
+  {
+    id: "bat-06",
+    brand: "Bosch",
+    amps: "100",
+    voltage: "12",
+    warranty: "24 Meses",
+    price: 135000,
+    pais: "",
+    modelosCompatibles: "F-150, Ram 1500, Silverado, Maquinaria",
+    recommendedFor: "Camiones ligeros y alto consumo",
+    tecnologia: "AGM Spiralcell Technology",
+    dimensiones: "325 x 165 x 238 mm"
+  }
+];
+
+const marcasDisponibles = [...new Set(baterias.map((bateria) => bateria.brand))];
+const amperajesDisponibles = [...new Set(baterias.map((bateria) => bateria.amps))].sort((a, b) => Number(a) - Number(b));
+const paisesDisponibles = [...new Set(baterias.map((bateria) => bateria.pais).filter(Boolean))].sort();
+---
+
+<Layout title="Catálogo de Baterías - Búsqueda Interactiva">
+  <Navbar />
+
+  <main class="container my-5">
+    
+    <!-- Encabezado -->
+    <div class="text-center mb-4">
+      <h1 class="display-5 fw-bold text-primary">Catálogo de Baterías</h1>
+      <p class="lead text-muted">Haz clic en cualquier batería para ver sus detalles o cotizar con opciones de entrega</p>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN Y FILTROS -->
+    <div class="card shadow-sm border-0 bg-light p-4 mb-5">
+      <div class="row g-3">
+        <div class="col-lg-12">
+          <label for="searchInput" class="form-label fw-bold">
+            <i class="bi bi-search text-primary me-1"></i> Búsqueda Rápida
+          </label>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="form-control form-control-lg" 
+            placeholder="Escribe una marca, auto (Yaris, Hilux) o país..."
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="brandFilter" class="form-label fw-bold"><i class="bi bi-tag-fill me-1"></i> Marca</label>
+          <select id="brandFilter" class="form-select form-select-lg">
+            <option value="todas">Todas las marcas</option>
+            {marcasDisponibles.map((marca) => <option value={marca}>{marca}</option>)}
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="ampFilter" class="form-label fw-bold"><i class="bi bi-lightning-charge-fill text-warning me-1"></i> Amperaje</label>
+          <select id="ampFilter" class="form-select form-select-lg">
+            <option value="todos">Todos los Ah</option>
+            {amperajesDisponibles.map((amperaje) => <option value={amperaje}>{amperaje} Ah</option>)}
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="countryFilter" class="form-label fw-bold"><i class="bi bi-globe-americas text-success me-1"></i> País</label>
+          <select id="countryFilter" class="form-select form-select-lg">
+            <option value="todos">Todos los países</option>
+            {paisesDisponibles.map((pais) => <option value={pais}>{pais}</option>)}
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- TARJETAS DE BATERÍAS INTERACTIVAS -->
+    <div class="row g-4" id="batteryGrid">
+      {baterias.map((bateria) => (
+        <div 
+          class="col-md-6 col-lg-4 battery-item" 
+          data-brand={bateria.brand.toLowerCase()}
+          data-amps={bateria.amps}
+          data-pais={bateria.pais.toLowerCase()}
+          data-modelos={bateria.modelosCompatibles.toLowerCase()}
+        >
+          <div class="card h-100 shadow-sm border position-relative hover-shadow">
+            
+            {bateria.pais && (
+              <span class="position-absolute top-0 end-0 bg-dark text-white badge m-2">
+                <i class="bi bi-geo-alt me-1"></i>{bateria.pais}
+              </span>
+            )}
+
+            <div class="card-header bg-transparent text-center pt-4 border-0">
+              <span class="badge bg-primary mb-1 fs-6">{bateria.brand}</span>
+              <h3 class="h3 card-title fw-bold my-1">{bateria.amps} Ah - {bateria.voltage}V</h3>
+            </div>
+
+            <div class="card-body">
+              <ul class="list-group list-group-flush mb-3">
+                <li class="list-group-item d-flex justify-content-between px-0">
+                  <span>Garantía:</span>
+                  <strong class="text-success">{bateria.warranty}</strong>
+                </li>
+                <li class="list-group-item px-0">
+                  <small class="text-muted d-block mb-1"><strong>Modelos Compatibles:</strong></small>
+                  <small class="text-secondary">{bateria.modelosCompatibles}</small>
+                </li>
+              </ul>
+              
+              <div class="text-center">
+                <h4 class="text-primary fw-bold display-6 mb-0">${bateria.price.toLocaleString()}</h4>
+              </div>
+            </div>
+
+            <!-- BOTONES DE INTERACCIÓN -->
+            <div class="card-footer bg-transparent border-0 pb-3 d-flex gap-2">
+              <button 
+                type="button" 
+                class="btn btn-primary w-100 fw-bold btn-select-battery"
+                data-bs-toggle="modal"
+                data-bs-target="#batteryModal"
+                data-brand={bateria.brand}
+                data-amps={bateria.amps}
+                data-price={bateria.price}
+                data-warranty={bateria.warranty}
+                data-pais={bateria.pais}
+                data-tecnologia={bateria.tecnologia}
+                data-dimensiones={bateria.dimensiones}
+                data-modelos={bateria.modelosCompatibles}
+              >
+                <i class="bi bi-eye me-1"></i> Ver y Personalizar
+              </button>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div id="noResults" class="text-center py-5 d-none">
+      <i class="bi bi-emoji-frown display-1 text-muted mb-3"></i>
+      <h3 class="fw-bold">No encontramos coincidencias</h3>
+      <p class="text-muted">Prueba cambiando los filtros.</p>
+    </div>
+
+  </main>
+
+  <!-- MODAL INTERACTIVO DE DETALLES Y COTIZACIÓN -->
+  <div class="modal fade" id="batteryModal" tabindex="-1" aria-labelledby="batteryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title fw-bold" id="modalTitle">Detalles de la Batería</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row g-4">
+            
+            <!-- Ficha Técnica -->
+            <div class="col-md-6 border-end">
+              <span class="badge bg-success mb-2 d-none" id="modalCountry"></span>
+              <h3 class="h2 fw-bold text-primary mb-1" id="modalAmps"></h3>
+              <p class="text-muted small mb-3" id="modalTech"></p>
+
+              <div class="bg-light p-3 rounded mb-3">
+                <h4 class="h3 fw-bold text-dark mb-0" id="modalPrice"></h4>
+                <small class="text-muted">Precio base estimado</small>
+              </div>
+
+              <ul class="list-group list-group-flush small">
+                <li class="list-group-item d-flex justify-content-between px-0">
+                  <span>Garantía Oficial:</span>
+                  <strong class="text-success" id="modalWarranty"></strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between px-0">
+                  <span>Dimensiones:</span>
+                  <strong text-secondary id="modalDim"></strong>
+                </li>
+              </ul>
+
+              <div class="mt-3">
+                <small class="fw-bold d-block text-muted">Modelos Compatibles:</small>
+                <small class="text-secondary" id="modalModels"></small>
+              </div>
+            </div>
+
+            <!-- Formulario Interactivo para Personalizar la Pedida -->
+            <div class="col-md-6">
+              <h4 class="h5 fw-bold mb-3"><i class="bi bi-sliders text-primary me-2"></i> Opciones de Pedido</h4>
+              
+              <div class="mb-3">
+                <label class="form-label fw-bold small">Tipo de Servicio:</label>
+                <select id="optionDelivery" class="form-select">
+                  <option value="Retiro en local/Taller">Retiro en Local</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold small">¿Entrega su batería usada a cambio?</label>
+                <select id="optionTradeIn" class="form-select">
+                  <option value="Sí, entregará batería vieja (Aplica Descuento)">Sí</option>
+                  <option value="No, solo comprar la nueva">No</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="inputVehicleModel" class="form-label fw-bold small">Marca y Modelo de tu vehículo:</label>
+                <input type="text" id="inputVehicleModel" class="form-control" placeholder="Ej: Hyundai Accent 2018" />
+              </div>
+
+              <button id="btnSendWhatsappModal" class="btn btn-success btn-lg w-100 fw-bold mt-2">
+                <i class="bi bi-whatsapp me-2"></i> Pedir Batería por WhatsApp
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
+
+<!-- SCRIPTS DE FILTRADO Y MODAL INTERACTIVO -->
+<script>
+  // Variables de Filtros
+  const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+  const brandFilter = document.getElementById('brandFilter') as HTMLSelectElement;
+  const ampFilter = document.getElementById('ampFilter') as HTMLSelectElement;
+  const countryFilter = document.getElementById('countryFilter') as HTMLSelectElement;
+  const items = document.querySelectorAll('.battery-item');
+  const noResults = document.getElementById('noResults');
+
+  // Función de Filtro
+  function filterBatteries() {
+    const searchText = searchInput.value.toLowerCase().trim();
+    const selectedBrand = brandFilter.value.toLowerCase();
+    const selectedAmp = ampFilter.value;
+    const selectedCountry = countryFilter.value.toLowerCase();
+    let visibleCount = 0;
+
+    items.forEach((item) => {
+      const element = item as HTMLElement;
+      const brand = element.dataset.brand || '';
+      const amps = element.dataset.amps || '';
+      const pais = element.dataset.pais || '';
+      const modelos = element.dataset.modelos || '';
+
+      const matchesSearch = searchText === '' || brand.includes(searchText) || pais.includes(searchText) || modelos.includes(searchText) || amps.includes(searchText);
+      const matchesBrand = selectedBrand === 'todas' || brand === selectedBrand;
+      const matchesAmp = selectedAmp === 'todos' || amps === selectedAmp;
+      const matchesCountry = selectedCountry === 'todos' || pais === selectedCountry;
+
+      if (matchesSearch && matchesBrand && matchesAmp && matchesCountry) {
+        element.style.display = 'block';
+        visibleCount++;
+      } else {
+        element.style.display = 'none';
+      }
+    });
+
+    if (noResults) {
+      if (visibleCount === 0) {
+        noResults.classList.remove('d-none');
+      } else {
+        noResults.classList.add('d-none');
+      }
+    }
+  }
+
+  searchInput?.addEventListener('input', filterBatteries);
+  brandFilter?.addEventListener('change', filterBatteries);
+  ampFilter?.addEventListener('change', filterBatteries);
+  countryFilter?.addEventListener('change', filterBatteries);
+
+  // LOGICA DEL MODAL INTERACTIVO
+  let currentSelectedBattery = { brand: '', amps: '', price: '' };
+
+  const selectButtons = document.querySelectorAll('.btn-select-battery');
+  
+  selectButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const button = e.currentTarget as HTMLElement;
+
+      const brand = button.dataset.brand || '';
+      const amps = button.dataset.amps || '';
+      const price = button.dataset.price || '0';
+      const warranty = button.dataset.warranty || '';
+      const pais = button.dataset.pais || '';
+      const tecnologia = button.dataset.tecnologia || '';
+      const dimensiones = button.dataset.dimensiones || '';
+      const modelos = button.dataset.modelos || '';
+
+      currentSelectedBattery = { brand, amps, price };
+
+      // Inyectar datos en el Modal
+      (document.getElementById('modalTitle') as HTMLElement).innerText = `Batería ${brand} - ${amps} Ah`;
+      (document.getElementById('modalAmps') as HTMLElement).innerText = `${brand} ${amps} Ah`;
+      const modalCountry = document.getElementById('modalCountry') as HTMLElement;
+      modalCountry.innerText = pais ? `Origen: ${pais}` : '';
+      modalCountry.classList.toggle('d-none', !pais);
+      (document.getElementById('modalTech') as HTMLElement).innerText = tecnologia;
+      (document.getElementById('modalPrice') as HTMLElement).innerText = `$${parseInt(price).toLocaleString()}`;
+      (document.getElementById('modalWarranty') as HTMLElement).innerText = warranty;
+      (document.getElementById('modalDim') as HTMLElement).innerText = dimensiones;
+      (document.getElementById('modalModels') as HTMLElement).innerText = modelos;
+    });
+  });
+
+  // Botón del modal que envía a WhatsApp con las opciones seleccionadas
+  const btnSendWhatsappModal = document.getElementById('btnSendWhatsappModal');
+  
+  btnSendWhatsappModal?.addEventListener('click', () => {
+    const numeroTelefono = "56922522593"; // Reemplaza con tu teléfono real
+    const delivery = (document.getElementById('optionDelivery') as HTMLSelectElement).value;
+    const tradeIn = (document.getElementById('optionTradeIn') as HTMLSelectElement).value;
+    const vehicle = (document.getElementById('inputVehicleModel') as HTMLInputElement).value || "No especificado";
+
+    const mensaje = `*COTIZACIÓN/PEDIDO DE BATERÍA*%0A%0A` +
+      `*Producto:* Batería ${encodeURIComponent(currentSelectedBattery.brand)} de ${currentSelectedBattery.amps} Ah%0A` +
+      `*Precio Base:* $${parseInt(currentSelectedBattery.price).toLocaleString()}%0A` +
+      `*Servicio deseado:* ${encodeURIComponent(delivery)}%0A` +
+      `*Entrega Batería Vieja:* ${encodeURIComponent(tradeIn)}%0A` +
+      `*Vehículo:* ${encodeURIComponent(vehicle)}`;
+
+    window.open(`https://wa.me/${numeroTelefono}?text=${mensaje}`, '_blank');
+  });
+</script>

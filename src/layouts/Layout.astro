@@ -1,0 +1,37 @@
+---
+// src/layouts/Layout.astro
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Venta e instalación de baterías de vehículos a domicilio. Baterías para autos, camionetas y motos." 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | El Bodegón de las Baterías</title>
+    <meta name="description" content={description} />
+
+    <!-- AQUÍ CAMBIAS EL FAVICON -->
+    <link rel="icon" type="image/png" href="/bodegon.png" />
+    
+    <!-- Bootswatch (Tema Flatly - Puedes cambiar 'flatly' por 'darkly', 'zephyr', etc.) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/flatly/bootstrap.min.css" />
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  </head>
+  <body>
+    <slot /> <!-- Aquí se inyectará el contenido de cada página -->
+
+    <!-- JS de Bootstrap para componentes interactivos (modales, navbars colapsables) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,353 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+// Servicios Principales enfocados en Calidad y Precio
+const servicios = [
+  {
+    icono: "bi-tag",
+    titulo: "Precios Imbatibles",
+    descripcion: "Ofrecemos las tarifas más competitivas del mercado sin sacrificar calidad ni respaldo."
+  },
+  {
+    icono: "bi-shield-check",
+    titulo: "Baterías 100% Garantizadas",
+    descripcion: "Solo trabajamos con marcas líderes de calidad comprobada con garantía de 6 a 12 meses."
+  },
+  {
+    icono: "bi-truck",
+    titulo: "Instalación a Domicilio",
+    descripcion: "Coordinamos la visita hacia el local. Probamos, instalamos y dejamos tu auto perfecto."
+  },
+  {
+    icono: "bi-arrow-repeat",
+    titulo: "Descuento por Tu Batería Usada",
+    descripcion: "Recibimos tu batería anterior al comprar la nueva y te hacemos un descuento directo en el acto."
+  }
+];
+
+// Marcas Destacadas
+const marcas = ["Troman", "ACDelco", "Bosch", "Premium", "TOPower"];
+
+// Testimonios de Clientes
+const testimonios = [
+  {
+    nombre: "Carlos M.",
+    comentario: "Estuve cotizando en varias partes y aquí encontré por lejos el mejor precio para una batería Bosch original. Muy amables.",
+    auto: "Toyota RAV4"
+  },
+  {
+    nombre: "Andrea S.",
+    comentario: "Excelente relación precio-calidad. Me explicaron súper bien qué amperaje necesitaba mi auto y no trataron de venderme algo más caro.",
+    auto: "Hyundai Accent"
+  },
+  {
+    nombre: "Roberto P.",
+    comentario: "Buenísimos precios y más con el descuento que hacen si dejas la batería vieja. Quedé súper conforme con la atención en taller.",
+    auto: "Chevrolet Sail"
+  }
+];
+---
+
+<Layout title="El Bodegón de las Baterías - Los Mejores Precios y la Mejor Calidad">
+  <Navbar />
+
+  <!-- 1. HERO SECTION -->
+  <header class="bg-primary text-white py-5 position-relative overflow-hidden">
+    <div class="container py-md-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <span class="badge bg-warning fw-bold mb-3 px-3 py-2 text-uppercase fs-6" style="color: #000;">
+            <i class="bi bi-award-fill me-1"></i> La Mejor Relación Calidad - Precio
+          </span>
+          <h1 class="display-3 fw-extrabold mb-3 lh-1">
+            Las mejores baterías del mercado <span class="text-warning">al precio más bajo.</span>
+          </h1>
+          <p class="lead mb-4 fs-4 text-light opacity-90">
+            Marcas originales de máxima duración con garantía oficial. Atención en nuestro local.
+          </p>
+          <div class="d-flex flex-column flex-sm-row gap-3">
+            <a href="https://wa.me/56922522593?text=Hola,%20busco%20la%20batería%20más%20económica%20y%20de%20buena%20calidad%20para%20mi%20auto" target="_blank" class="btn btn-success btn-lg fw-bold px-4 py-3 shadow">
+              <i class="bi bi-whatsapp me-2 fs-5"></i> Cotizar por WhatsApp
+            </a>
+            <a href="/catalogo" class="btn btn-outline-light btn-lg fw-bold px-4 py-3">
+              <i class="bi bi-grid me-2"></i> Ver Catálogo de Precios
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-5 text-center">
+          <div class="p-4 bg-white text-dark rounded-4 shadow-lg border border-light">
+            <div class="badge bg-danger text-white mb-2 fs-6 px-3 py-2">
+              <i class="bi bi-percent me-1"></i> ¡Ahorra en tu compra!
+            </div>
+            <i class="bi bi-ev-front-fill display-1 text-primary mb-2 d-block"></i>
+            <h2 class="h3 fw-bold mb-2">¿Quieres cotizar tu batería?</h2>
+            <p class="text-muted small mb-4">Escríbenos el modelo de tu vehículo y te daremos la opción con mejor precio garantizado.</p>
+            <a href="https://wa.me/56922522593?text=Hola,%20quisiera%20saber%20el%20precio%20de%20la%20batería%20para%20mi%20vehículo" target="_blank" class="btn btn-primary w-100 fw-bold py-2">
+              <i class="bi bi-telephone-fill me-1"></i> Consultar Precio
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANDA DE GARANTÍA DE PRECIO Y CALIDAD -->
+  <section class="bg-warning  py-3 fw-bold" style="color: #4b4242;">
+    <div class="container text-center">
+      <i class="bi bi-check-circle-fill me-2"></i> Marcas originales 100% garantizadas • Los precios más convenientes con instalación y revisión técnica
+    </div>
+  </section>
+
+  <!-- 2. BANDA DE MARCAS DE BATERÍAS -->
+  <section class="py-4 bg-light border-bottom">
+    <div class="container text-center">
+      <small class="text-uppercase text-muted fw-bold tracking-wider d-block mb-3">Trabajamos con marcas reconocidas a nivel mundial</small>
+      <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 gap-md-5">
+        {marcas.map((marca) => (
+          <span class="fs-4 fw-bold">{marca}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SECCIÓN: POR QUÉ ELEGIRNOS -->
+  <section class="py-5 my-md-4">
+    <div class="container">
+      <div class="text-center max-w-xl mx-auto mb-5">
+        <h2 class="display-6 fw-bold text-primary">¿Por qué somos tu mejor opción?</h2>
+        <p class="lead text-muted">Combinamos precios bajos de competencias con un servicio de instalación confiable y rapido.</p>
+      </div>
+
+      <div class="row g-4">
+        {servicios.map((s) => (
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-0 shadow-sm p-3 text-center rounded-4 hover-shadow">
+              <div class="card-body">
+                <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px;">
+                  <i class={`bi ${s.icono} fs-2`}></i>
+                </div>
+                <h3 class="h5 fw-bold mb-2">{s.titulo}</h3>
+                <p class="text-muted small mb-0">{s.descripcion}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SECCIÓN ATENCIÓN Y ASESORÍA -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="text-primary fw-bold text-uppercase">Compra Segura</span>
+          <h2 class="display-6 fw-bold mb-4">Te ayudamos a no gastar de más</h2>
+
+          <div class="d-flex mb-4">
+            <div class="me-3">
+              <span class="badge bg-primary rounded-circle fs-5 p-3">1</span>
+            </div>
+            <div>
+              <h3 class="h5 fw-bold mb-1">Escríbenos por WhatsApp</h3>
+              <p class="text-muted mb-0">Envíanos el modelo, marca y año de tu auto.</p>
+            </div>
+          </div>
+
+          <div class="d-flex mb-4">
+            <div class="me-3">
+              <span class="badge bg-primary rounded-circle fs-5 p-3">2</span>
+            </div>
+            <div>
+              <h3 class="h5 fw-bold mb-1">Recibe las mejores alternativas</h3>
+              <p class="text-muted mb-0">Te mostramos baterías de calidad premium y económicas, acordes a tu presupuesto.</p>
+            </div>
+          </div>
+
+          <div class="d-flex">
+            <div class="me-3">
+              <span class="badge bg-primary rounded-circle fs-5 p-3">3</span>
+            </div>
+            <div>
+              <h3 class="h5 fw-bold mb-1">Instalación garantizada</h3>
+              <p class="text-muted mb-0">Te atendemos en nuestro local o coordinamos la entrega e instalación.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="bg-primary text-white p-5 rounded-4 shadow text-center position-relative">
+            <i class="bi bi-piggy-bank display-1 mb-3 text-warning"></i>
+            <h3 class="fw-bold mb-3">¿Buscas el mejor precio?</h3>
+            <p class="mb-4">Cotiza hoy mismo y entrega tu batería antigua para obtener un descuento adicional.</p>
+            <a href="https://wa.me/56922522593?text=Hola,%20quiero%20cotizar%20mi%20batería%20al%20mejor%20precio" target="_blank" class="btn btn-warning btn-lg fw-bold px-4"  style="color: #4c5455;"  >
+              <i class="bi bi-whatsapp me-2"></i> Pedir Cotización
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. TESTIMONIOS Y OPINIONES -->
+  <section class="py-5 my-md-4">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-5 gap-3">
+        <div class="text-center text-md-start">
+          <h2 class="display-6 fw-bold text-primary mb-1">Opiniones de nuestros clientes</h2>
+          <p class="text-muted mb-0">Quienes buscan economía y buena atención nos eligen.</p>
+        </div>
+        <!-- BOTÓN PARA ABRIR EL MODAL DE OPINIÓN -->
+        <button type="button" class="btn btn-warning fw-bold btn-lg rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#opinionModal" style="color: #4c5455;">
+          <i class="bi bi-star-fill me-2"></i> Dejar una opinión
+        </button>
+      </div>
+
+      <!-- CONTENEDOR DONDE SE RENDERIZAN Y AGREGAN LAS OPINIONES -->
+      <div class="row g-4" id="testimoniosContainer">
+        {testimonios.map((t) => (
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-4 rounded-4 bg-light">
+              <div class="card-body">
+                <div class="text-warning mb-3">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </div>
+                <p class="card-text text-secondary mb-4">"{t.comentario}"</p>
+                <div>
+                  <strong class="d-block text-dark">{t.nombre}</strong>
+                  <small class="text-muted">{t.auto}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL CON FORMULARIO PARA DEJAR OPINIÓN -->
+  <div class="modal fade" id="opinionModal" tabindex="-1" aria-labelledby="opinionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title fw-bold" id="opinionModalLabel">
+            <i class="bi bi-chat-heart-fill text-warning me-2"></i> Tu opinión nos importa
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <form id="opinionForm">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label for="inputNombre" class="form-label fw-bold">Nombre y Apellido</label>
+              <input type="text" id="inputNombre" class="form-control" placeholder="Ej: Marcela Gómez" required />
+            </div>
+            <div class="mb-3">
+              <label for="inputAuto" class="form-label fw-bold">Modelo de tu Auto (Opcional)</label>
+              <input type="text" id="inputAuto" class="form-control" placeholder="Ej: Nissan Kicks 2021" />
+            </div>
+            <div class="mb-3">
+              <label for="selectEstrellas" class="form-label fw-bold">Calificación</label>
+              <select id="selectEstrellas" class="form-select">
+                <option value="5">⭐⭐⭐⭐⭐ Excelente (5/5)</option>
+                <option value="4">⭐⭐⭐⭐ Muy Buena (4/5)</option>
+                <option value="3">⭐⭐⭐ Buena (3/5)</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="inputComentario" class="form-label fw-bold">Tu comentario</label>
+              <textarea id="inputComentario" class="form-control" rows="3" placeholder="Escribe aquí tus comentarios sobre nuestro precio o atención..." required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer bg-light border-0">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary fw-bold px-4">Publicar Opinión</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. BANNER FINAL -->
+  <section class="py-5 bg-dark text-white text-center">
+    <div class="container py-4">
+      <h2 class="display-5 fw-bold mb-3">Renueva tu batería con confianza y al mejor costo</h2>
+      <p class="lead text-muted mb-4">Visítanos en nuestro local o agenda tu servicio.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="/contacto" class="btn btn-primary btn-lg fw-bold px-4">
+          <i class="bi bi-geo-alt me-2"></i> Ver Ubicación y local
+        </a>
+        <a href="/catalogo" class="btn btn-outline-light btn-lg fw-bold px-4">
+          <i class="bi bi-search me-2"></i> Ver Catálogo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<!-- SCRIPT EN EL NAVEGADOR PARA INSERTAR LA OPINIÓN AL INSTANTE -->
+<script>
+  const form = document.getElementById('opinionForm') as HTMLFormElement | null;
+  const container = document.getElementById('testimoniosContainer');
+  const escapeHtml = (value: string) => value.replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[character] as string);
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nombre = (document.getElementById('inputNombre') as HTMLInputElement).value;
+    const auto = (document.getElementById('inputAuto') as HTMLInputElement).value || "Cliente Verificado";
+    const estrellasNum = parseInt((document.getElementById('selectEstrellas') as HTMLSelectElement).value);
+    const comentario = (document.getElementById('inputComentario') as HTMLTextAreaElement).value;
+
+    // Crear la cantidad de estrellas seleccionadas
+    let estrellasHTML = '';
+    for (let i = 0; i < estrellasNum; i++) {
+      estrellasHTML += '<i class="bi bi-star-fill me-1"></i>';
+    }
+
+    // Crear la tarjeta de la opinión
+    const colDiv = document.createElement('div');
+    colDiv.className = 'col-md-4';
+    colDiv.innerHTML = `
+      <div class="card h-100 border-0 shadow-sm p-4 rounded-4 bg-light">
+        <div class="card-body">
+          <div class="text-warning mb-3">
+            ${estrellasHTML}
+          </div>
+          <p class="card-text text-secondary mb-4">"${escapeHtml(comentario)}"</p>
+          <div>
+            <strong class="d-block text-dark">${escapeHtml(nombre)}</strong>
+            <small class="text-muted">${escapeHtml(auto)}</small>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Insertar al inicio de la lista
+    container?.prepend(colDiv);
+
+    // Limpiar campos
+    form.reset();
+
+    // Cerrar el Modal
+    const modalElement = document.getElementById('opinionModal');
+    if (modalElement && (window as any).bootstrap) {
+      const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement) || new (window as any).bootstrap.Modal(modalElement);
+      modalInstance.hide();
+    }
+  });
+</script>

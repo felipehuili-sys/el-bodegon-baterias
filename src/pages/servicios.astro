@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+// Servicios detallados del taller
+const serviciosEspecializados = [
+  {
+    id: "motores-partida",
+    titulo: "Reparación de Motores de Partida",
+    subtitulo: "Autos, Camionetas y Camiones",
+    icono: "bi-gear-wide-connected",
+    badge: "Taller Especializado",
+    badgeColor: "bg-primary",
+    descripcion: "Diagnóstico completo del sistema de arranque. Desarmamos, limpiamos y reemplazamos piezas desgastadas para dejar el motor de partida como nuevo.",
+    caracteristicas: [
+      "Cambio de carbones, bendix, automático o solenoide ",
+      "Prueba en banco de ensayo antes de montar",
+      "Sistemas de 12V y 24V (Camiones y maquinaria)"
+    ]
+  },
+  {
+    id: "alternadores",
+    titulo: "Mantención y Reparación de Alternadores",
+    subtitulo: "Restauración del Sistema de Carga",
+    icono: "bi-lightning-charge",
+    badge: "Garantizado",
+    badgeColor: "bg-info text-light",
+    descripcion: "¿El tablero te marca la batería o el auto no mantiene la carga? Reparamos tu alternador para asegurar que la batería reciba el voltaje correcto mientras conduces.",
+    caracteristicas: [
+      "Cambio de caja reguladora y placa rectificadora",
+      "Reemplazo de rodamientos y poleas libre/fija",
+      "Medición de amperes de salida reales"
+    ]
+  },
+  {
+    id: "diagnostico",
+    titulo: "Diagnóstico Eléctrico y Mediciones",
+    subtitulo: "Evaluación Preventiva",
+    icono: "bi-speedometer2",
+    badge: "Gratis en Taller",
+    badgeColor: "bg-success",
+    descripcion: "Evaluamos la salud de tu sistema con probadores digitales. Identificamos consumos pocos visibles (fugas de corriente) que descargan tu batería de noche.",
+    caracteristicas: [
+      "Test de vida útil de la batería (CCA)",
+      "Prueba de carga del alternador bajo consumo",
+      "Detección de parásitos eléctricos"
+    ]
+  }
+];
+---
+
+<Layout title="Servicios Técnicos - El Bodegón Baterías">
+  <Navbar />
+
+  <main class="container my-5">
+    
+    <!-- Encabezado -->
+    <div class="text-center mb-5">
+      <h1 class="display-5 fw-bold text-primary">Servicios Técnicos y Especializados</h1>
+      <p class="lead text-muted">
+        Especialistas en electromecánica: Baterías, Motores de Partida y Alternadores para todo tipo de vehículos.
+      </p>
+    </div>
+
+    <!-- Lista de Servicios (Alineación ordenada en 3 columnas para que queden simétricas) -->
+    <div class="row g-4 justify-content-center">
+      {serviciosEspecializados.map((servicio) => (
+        <div class="col-md-6 col-lg-4" id={servicio.id}>
+          <div class="card h-100 shadow-sm border-0 bg-light p-3 p-xl-4">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <!-- Encabezado de la Tarjeta -->
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-primary text-white p-3 rounded-circle me-3 flex-shrink-0">
+                      <i class={`bi ${servicio.icono} fs-3`}></i>
+                    </div>
+                    <div>
+                      <h2 class="h5 card-title mb-0 fw-bold text-dark">{servicio.titulo}</h2>
+                      <small class="text-muted fw-semibold d-block">{servicio.subtitulo}</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <span class={`badge ${servicio.badgeColor}`}>{servicio.badge}</span>
+                </div>
+
+                <p class="card-text text-secondary mb-4 small">
+                  {servicio.descripcion}
+                </p>
+
+                <!-- Puntos Clave del Servicio -->
+                <h3 class="h6 fw-bold text-dark mb-2">¿Qué incluye este servicio?</h3>
+                <ul class="list-unstyled text-muted small mb-4">
+                  {servicio.caracteristicas.map((item) => (
+                    <li class="mb-2 d-flex align-items-start">
+                      <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Botón de Acción -->
+              <div class="pt-3 border-top mt-2">
+                <a 
+                  href={`https://wa.me/56922522593?text=Hola,%20quisiera%20agendar/consultar%20por%20el%20servicio:%20${encodeURIComponent(servicio.titulo)}`}
+                  class="btn btn-success w-100 fw-bold"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="bi bi-whatsapp me-2"></i> Agendar o Consultar
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Banner Informativo Taller -->
+    <div class="bg-primary text-white rounded-3 p-4 p-md-5 mt-5 text-center shadow">
+      <h2 class="fw-bold mb-3">¿Tienes camiones o maquinaria pesada?</h2>
+      <p class="lead mb-4">Atendemos requerimientos de empresas, revisión de bancos de baterías y mantención de motores de partida a 24V.</p>
+      <a 
+        href="https://wa.me/56922522593?text=Hola,%20necesito%20cotizacion%20para%20flota%20o%20maquinaria" 
+        class="btn btn-warning btn-lg fw-bold text- light"
+        target="_blank"
+      >
+        <i class="bi bi-telephone-outbound me-2"></i> Contactar Local Corporativo
+      </a>
+    </div>
+
+  </main>
+
+  <Footer />
+</Layout>

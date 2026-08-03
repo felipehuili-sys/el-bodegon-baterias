@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+// Categorías de Preguntas Frecuentes
+const categoriasFAQ = [
+  {
+    categoria: "Compra y Productos",
+    icono: "bi-bag-check-fill",
+    preguntas: [
+      {
+        id: "faq1",
+        pregunta: "¿Cómo sé qué batería necesita mi vehículo?",
+        respuesta: "Solo necesitas enviarnos la marca, modelo, año y motorización de tu vehículo por WhatsApp o mediante nuestro catálogo. Nuestro equipo técnico verificará la aplicación exacta que corresponde a tu auto."
+      },
+      {
+        id: "faq2",
+        pregunta: "¿Las baterías son nuevas y cuentan con garantía?",
+        respuesta: "Sí, el 100% de nuestras baterías son totalmente nuevas, selladas de fábrica y cuentan con garantía oficial que va desde los 12 hasta los 24 meses (según la marca y modelo adquirido)."
+      },
+      {
+        id: "faq3",
+        pregunta: "¿Qué marcas trabajan?",
+        respuesta: "Comercializamos marcas reconocidas como Troman, ACDelco, Bosch, Premium y TOPower."
+      }
+    ]
+  },
+  {
+    categoria: "Atención e Instalación en Taller",
+    icono: "bi-tools",
+    preguntas: [
+      {
+        id: "faq4",
+        pregunta: "¿Tiene costo la instalación de la batería en el taller?",
+        respuesta: "No, la revisión de tu batería actual y la instalación de la batería nueva en nuestro taller en Quilicura es totalmente gratuita al realizar la compra."
+      },
+      {
+        id: "faq5",
+        pregunta: "¿Necesito pedir hora para ir al taller?",
+        respuesta: "Atendemos por orden de llegada, pero puedes escribirnos previamente por WhatsApp para confirmar stock de tu batería y asegurar una atención aún más rápida."
+      }
+    ]
+  },
+  {
+    categoria: "Descuento por Reciclaje y Pagos",
+    icono: "bi-arrow-repeat",
+    preguntas: [
+      {
+        id: "faq7",
+        pregunta: "¿Cómo funciona el descuento por entregar mi batería usada?",
+        respuesta: "En apoyo al medio ambiente y a tu bolsillo, si nos dejas tu batería antigua en el taller al comprar la nueva, te aplicamos un descuento directo en la boleta. Nosotros nos encargamos de su reciclaje seguro."
+      },
+      {
+        id: "faq8",
+        pregunta: "¿Cuáles son los medios de pago aceptados?",
+        respuesta: "En nuestro taller aceptamos pago en efectivo, transferencias electrónicas inmediatas y tarjetas de débito o crédito."
+      }
+    ]
+  },
+  {
+    categoria: "Servicios Técnicos y Diagnóstico",
+    icono: "bi-speedometer2",
+    preguntas: [
+      {
+        id: "faq9",
+        pregunta: "¿Cómo sé si el problema es la batería o el alternador?",
+        respuesta: "En nuestro taller probamos tu vehículo con instrumental digital. Medimos la carga del alternador y la vida útil de la batería antes de hacer cualquier cambio para asegurarnos de darte el diagnóstico correcto."
+      },
+      {
+        id: "faq10",
+        pregunta: "¿Realizan mantención de alternadores y motores de partida?",
+        respuesta: "Sí, además de baterías, contamos con taller especializado para la mantención y reparación completa de alternadores y motores de partida de 12V y 24V (autos, camionetas y camiones)."
+      }
+    ]
+  }
+];
+---
+
+<Layout title="Preguntas Frecuentes - El Bodegón Baterías">
+  <Navbar />
+
+  <main class="container my-5 py-md-3">
+    
+    <!-- Encabezado de la Sección -->
+    <div class="text-center max-w-2xl mx-auto mb-5">
+      <span class="badge bg-primary bg-opacity-10 text-primary fw-bold text-uppercase px-3 py-2 rounded-pill mb-2">
+        <i class="bi bi-question-circle-fill me-1"></i> Resuelve tus dudas
+      </span>
+      <h1 class="display-5 fw-bold text-primary">Preguntas Frecuentes</h1>
+      <p class="lead text-muted">
+        Encuentra respuestas rápidas sobre nuestras baterías, garantías, atención en taller y métodos de pago.
+      </p>
+    </div>
+
+    <!-- Bloques por Categoría con Acordeones -->
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        
+        {categoriasFAQ.map((cat, idx) => (
+          <div class="mb-5">
+            <div class="d-flex align-items-center mb-3">
+              <div class="bg-primary text-white p-2 rounded-3 me-3 d-inline-flex align-items-center justify-content-center">
+                <i class={`bi ${cat.icono} fs-4`}></i>
+              </div>
+              <h2 class="h4 fw-bold text-dark mb-0">{cat.categoria}</h2>
+            </div>
+
+            <!-- Acordeón Bootstrap -->
+            <div class="accordion shadow-sm rounded-4 overflow-hidden" id={`accordion-${idx}`}>
+              {cat.preguntas.map((p) => (
+                <div class="accordion-item border-0 border-bottom">
+                  <h3 class="accordion-header" id={`heading-${p.id}`}>
+                    <button 
+                      class="accordion-button collapsed fw-bold text-dark fs-6 py-3" 
+                      type="button" 
+                      data-bs-toggle="collapse" 
+                      data-bs-target={`#collapse-${p.id}`} 
+                      aria-expanded="false" 
+                      aria-controls={`collapse-${p.id}`}
+                    >
+                      {p.pregunta}
+                    </button>
+                  </h3>
+                  <div 
+                    id={`collapse-${p.id}`} 
+                    class="accordion-collapse collapse" 
+                    aria-labelledby={`heading-${p.id}`} 
+                    data-bs-parent={`#accordion-${idx}`}
+                  >
+                    <div class="accordion-body text-secondary lh-base">
+                      {p.respuesta}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <!-- Tarjeta de ayuda directa si no encuentra su respuesta -->
+        <div class="bg-light border rounded-4 p-4 p-md-5 text-center mt-4">
+          <i class="bi bi-headset display-4 text-primary mb-3 d-block"></i>
+          <h3 class="fw-bold text-dark mb-2">¿Tienes alguna otra duda o consulta técnica?</h3>
+          <p class="text-muted mb-4">
+            Nuestro equipo está disponible por WhatsApp para asesorarte al instante y cotizar la batería para tu auto.
+          </p>
+          <a 
+            href="https://wa.me/56922522593?text=Hola,%20tengo%20una%20consulta%20sobre%20las%20baterías/servicios" 
+            target="_blank" 
+            class="btn btn-success btn-lg fw-bold px-4 rounded-pill shadow-sm"
+          >
+            <i class="bi bi-whatsapp me-2"></i> Hablar con un Asesor Técnico
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <Footer />
+</Layout>
