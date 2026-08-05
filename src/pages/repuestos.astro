@@ -1,0 +1,178 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+// Catálogo de Alternadores y Motores de Partida
+const repuestos = [
+  // MOTORES DE PARTIDA
+  {
+    id: "mp-12v-liviano",
+    tipo: "Motor de Partida",
+    titulo: "Motor de Partida 12V (Liviano)",
+    aplicacion: "Autos de ciudad, Sedanes y Hatchbacks",
+    caracteristicas: ["Sistema de 12V", "9 a 11 Dientes", "Garantía de 6 a 12 meses"],
+    estado: "Nuevo y Reconstruido",
+    badge: "Más Vendido",
+    badgeColor: "bg-primary",
+    icono: "bi-gear-wide-connected"
+  },
+  {
+    id: "mp-12v-suv",
+    tipo: "Motor de Partida",
+    titulo: "Motor de Partida 12V High-Torque",
+    aplicacion: "SUVs, Camionetas y Pick-ups Diésel/Bencina",
+    caracteristicas: ["Alto torque de arranque", "Reforzado para alto consumo", "Prueba en banco previa"],
+    estado: "Nuevo Original / Alternativo",
+    badge: "Uso Pesado",
+    badgeColor: "bg-dark",
+    icono: "bi-gear-wide-connected"
+  },
+  {
+    id: "mp-24v-camion",
+    tipo: "Motor de Partida",
+    titulo: "Motor de Partida 24V (Pesado)",
+    aplicacion: "Camiones, Buses y Maquinaria Agrícola/Construcción",
+    caracteristicas: ["Sistema de 24V", "Bendix de alta resistencia", "Soporta jornadas continuas"],
+    estado: "Nuevo y Reconstruido Taller",
+    badge: "Línea Pesada",
+    badgeColor: "bg-warning text-dark",
+    icono: "bi-gear-wide-connected"
+  },
+
+  // ALTERNADORES
+  {
+    id: "alt-12v-90a",
+    tipo: "Alternador",
+    titulo: "Alternador 12V / 80A - 100A",
+    aplicacion: "Vehículos livianos y furgones pequeños",
+    caracteristicas: ["Placa rectificadora integrada", "Polea fija o libre", "Carga estable en ralentí"],
+    estado: "Nuevo y Probado",
+    badge: "Garantizado",
+    badgeColor: "bg-success",
+    icono: "bi-lightning-charge-fill"
+  },
+  {
+    id: "alt-12v-140a",
+    tipo: "Alternador",
+    titulo: "Alternador 12V / 120A - 150A",
+    aplicacion: "Camionetas diésel, SUVs y vehículos con audio/accesorios",
+    caracteristicas: ["Alta capacidad de amperaje", "Caja reguladora inteligente", "Ideal para baterías grandes"],
+    estado: "Nuevo Original",
+    badge: "Alto Rendimiento",
+    badgeColor: "bg-info text-dark",
+    icono: "bi-lightning-charge-fill"
+  },
+  {
+    id: "alt-24v-pesado",
+    tipo: "Alternador",
+    titulo: "Alternador 24V / 50A - 90A",
+    aplicacion: "Camiones de transporte, buses y maquinaria 24V",
+    caracteristicas: ["Resistente a altas temperaturas", "Doble rodamiento sellado", "Salida constante"],
+    estado: "Nuevo / Reconstruido Taller",
+    badge: "Línea Pesada",
+    badgeColor: "bg-warning text-dark",
+    icono: "bi-lightning-charge-fill"
+  }
+];
+---
+
+<Layout title="Catálogo de Alternadores y Motores de Partida - El Bodegón">
+  <Navbar />
+
+  <main class="container my-5 py-md-3">
+    
+    <!-- Encabezado -->
+    <div class="text-center max-w-2xl mx-auto mb-5">
+      <span class="badge bg-primary bg-opacity-10 text-primary fw-bold text-uppercase px-3 py-2 rounded-pill mb-2">
+        <i class="bi bi-tools me-1"></i> Electromecánica Especializada
+      </span>
+      <h1 class="display-5 fw-bold text-primary">Alternadores y Motores de Partida</h1>
+      <p class="lead text-muted">
+        Venta, recambio y reparación de componentes de arranque y carga para autos, camionetas y camiones.
+      </p>
+    </div>
+
+    <!-- Banner Informativo de Recambio -->
+    <div class="alert alert-warning border-0 shadow-sm rounded-4 p-4 mb-5 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-arrow-repeat display-5 me-3 text-dark"></i>
+        <div>
+          <h4 class="fw-bold mb-1 text-dark">¿Tienes tu repuesto antiguo?</h4>
+          <p class="mb-0 text-dark opacity-75">Trae tu motor de partida o alternador malo al taller para evaluación. Recibimos tu pieza antigua o la reparamos en el día.</p>
+        </div>
+      </div>
+      <a href="https://wa.me/56922522593?text=Hola,%20quiero%20consultar%20por%20reparación%20o%20recambio%20de%20mi%20repuesto" target="_blank" class="btn btn-dark fw-bold text-nowrap px-4 py-2">
+        Consultar Recambio
+      </a>
+    </div>
+
+    <!-- Catálogo de Productos -->
+    <div class="row g-4">
+      {repuestos.map((item) => (
+        <div class="col-md-6 col-lg-4" id={item.id}>
+          <div class="card h-100 border-0 shadow-sm bg-light rounded-4 p-3 p-xl-4 hover-shadow">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <!-- Encabezado de la Tarjeta -->
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <span class={`badge ${item.badgeColor} px-3 py-2 rounded-pill fs-7`}>{item.badge}</span>
+                  <small class="text-muted fw-bold">{item.tipo}</small>
+                </div>
+
+                <div class="d-flex align-items-center mb-3">
+                  <div class="bg-primary text-white p-3 rounded-circle me-3 flex-shrink-0">
+                    <i class={`bi ${item.icono} fs-3`}></i>
+                  </div>
+                  <div>
+                    <h3 class="h5 fw-bold mb-0 text-dark">{item.titulo}</h3>
+                    <small class="text-primary fw-semibold">{item.estado}</small>
+                  </div>
+                </div>
+
+                <p class="text-secondary small mb-3">
+                  <strong>Aplicación recomendada:</strong><br />
+                  {item.aplicacion}
+                </p>
+
+                <!-- Puntos Clave -->
+                <ul class="list-unstyled text-muted small mb-4">
+                  {item.caracteristicas.map((c) => (
+                    <li class="mb-1 d-flex align-items-center">
+                      <i class="bi bi-check2-circle text-primary me-2"></i>
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Botón WhatsApp -->
+              <div class="pt-3 border-top">
+                <a 
+                  href={`https://wa.me/56922522593?text=Hola,%20busco%20cotizar:%20${encodeURIComponent(item.titulo)}%20para%20mi%20vehículo`}
+                  target="_blank"
+                  class="btn btn-success w-100 fw-bold"
+                >
+                  <i class="bi bi-whatsapp me-2"></i> Consultar Disponibilidad
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Banner Final para Atención Presencial -->
+    <div class="bg-primary text-white rounded-4 p-4 p-md-5 mt-5 text-center shadow">
+      <h3 class="fw-bold mb-2">¿No sabes qué código o modelo necesita tu vehículo?</h3>
+      <p class="mb-4 text-light opacity-90">Escríbenos por WhatsApp con el modelo y año de tu auto o tráelo directamente a nuestro taller para probarlo en banco de ensayo.</p>
+      <a href="https://wa.me/56922522593?text=Hola,%20necesito%20asesoría%20para%20saber%20qué%20alternador/motor%20de%20partida%20usa%20mi%20auto" target="_blank" class="btn btn-warning fw-bold text-dark btn-lg px-4">
+        <i class="bi bi-headset me-2"></i> Hablar con un Técnico
+      </a>
+    </div>
+
+  </main>
+
+  <Footer />
+</Layout>
