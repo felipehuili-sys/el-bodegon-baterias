@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { supabase } from '../lib/supabase.js';
+
+// Traemos los comentarios desde Supabase, ordenados del más nuevo al más viejo
+const { data: comentarios, error } = await supabase
+  .from('comentarios')
+  .select('*')
+  .order('created_at', { ascending: false });
+
+if (error) {
+  console.error('Error al traer comentarios:', error.message);
+}
+---
+
+<Layout title="Comentarios - El Bodegón de las Baterías">
+  <Navbar />
+
+  <main class="container my-5">
+
+    <!-- Encabezado -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-5 gap-3">
+      <div class="text-center text-md-start">
+        <h1 class="display-5 fw-bold text-primary mb-1">Opiniones de nuestros clientes</h1>
+        <p class="lead text-muted mb-0">Quienes buscan economía y buena atención nos eligen.</p>
+      </div>
+      <button type="button" class="btn btn-warning fw-bold btn-lg rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#opinionModal" style="color: #4c5455;">
+        <i class="bi bi-star-fill me-2"></i> Dejar una opinión
+      </button>
+    </div>
+
+    <!-- CONTENEDOR DONDE SE RENDERIZAN Y AGREGAN LAS OPINIONES -->
+    <div class="row g-4" id="comentariosContainer">
+      {comentarios && comentarios.map((c) => (
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm p-4 rounded-4 bg-light">
+            <div class="card-body">
+              <div class="text-warning mb-3">
+                {Array.from({ length: c.estrellas }).map(() => (
+                  <i class="bi bi-star-fill"></i>
+                ))}
+              </div>
+              <p class="card-text text-secondary mb-4">"{c.comentario}"</p>
+              <div>
+                <strong class="d-block text-dark">{c.nombre}</strong>
+                <small class="text-muted">{c.auto}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {(!comentarios || comentarios.length === 0) && (
+      <p class="text-center text-muted mt-4">Todavía no hay comentarios. ¡Sé el primero en dejar uno!</p>
+    )}
+
+  </main>
+
+  <!-- MODAL CON FORMULARIO PARA DEJAR OPINIÓN -->
+  <div class="modal fade" id="opinionModal" tabindex="-1" aria-labelledby="opinionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title fw-bold" id="opinionModalLabel">
+            <i class="bi bi-chat-heart-fill text-warning me-2"></i> Tu opinión nos importa
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <form id="opinionForm">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label for="inputNombre" class="form-label fw-bold">Nombre y Apellido</label>
+              <input type="text" id="inputNombre" class="form-control" placeholder="Ej: Marcela Gómez" required />
+            </div>
+            <div class="mb-3">
+              <label for="inputAuto" class="form-label fw-bold">Modelo de tu Auto (Opcional)</label>
+              <input type="text" id="inputAuto" class="form-control" placeholder="Ej: Nissan Kicks 2021" />
+            </div>
+            <div class="mb-3">
+              <label for="selectEstrellas" class="form-label fw-bold">Calificación</label>
+              <select id="selectEstrellas" class="form-select">
+                <option value="5">⭐⭐⭐⭐⭐ Excelente (5/5)</option>
+                <option value="4">⭐⭐⭐⭐ Muy Buena (4/5)</option>
+                <option value="3">⭐⭐⭐ Buena (3/5)</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="inputComentario" class="form-label fw-bold">Tu comentario</label>
+              <textarea id="inputComentario" class="form-control" rows="3" placeholder="Escribe aquí tus comentarios sobre nuestro precio o atención..." required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer bg-light border-0">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary fw-bold px-4">Publicar Opinión</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { supabase } from '../lib/supabase.js';
+
+  const form = document.getElementById('opinionForm') as HTMLFormElement | null;
+  const container = document.getElementById('comentariosContainer');
+  const escapeHtml = (value: string) => value.replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[character] as string);
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const nombre = (document.getElementById('inputNombre') as HTMLInputElement).value;
+    const auto = (document.getElementById('inputAuto') as HTMLInputElement).value || "Cliente Verificado";
+    const estrellasNum = parseInt((document.getElementById('selectEstrellas') as HTMLSelectElement).value);
+    const comentario = (document.getElementById('inputComentario') as HTMLTextAreaElement).value;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Publicando...';
+
+    // Insertamos el comentario en Supabase
+    const { error } = await supabase.from('comentarios').insert({
+      nombre,
+      auto,
+      comentario,
+      estrellas: estrellasNum
+    });
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Publicar Opinión';
+
+    if (error) {
+      alert('Hubo un error al publicar tu opinión. Intenta de nuevo.');
+      console.error(error);
+      return;
+    }
+
+    // Si se guardó bien, lo agregamos visualmente sin recargar la página
+    let estrellasHTML = '';
+    for (let i = 0; i < estrellasNum; i++) {
+      estrellasHTML += '<i class="bi bi-star-fill me-1"></i>';
+    }
+
+    const colDiv = document.createElement('div');
+    colDiv.className = 'col-md-4';
+    colDiv.innerHTML = `
+      <div class="card h-100 border-0 shadow-sm p-4 rounded-4 bg-light">
+        <div class="card-body">
+          <div class="text-warning mb-3">
+            ${estrellasHTML}
+          </div>
+          <p class="card-text text-secondary mb-4">"${escapeHtml(comentario)}"</p>
+          <div>
+            <strong class="d-block text-dark">${escapeHtml(nombre)}</strong>
+            <small class="text-muted">${escapeHtml(auto)}</small>
+          </div>
+        </div>
+      </div>
+    `;
+
+    container?.prepend(colDiv);
+    form.reset();
+
+    const modalElement = document.getElementById('opinionModal');
+    if (modalElement && (window as any).bootstrap) {
+      const modalInstance = (window as any).bootstrap.Modal.getInstance(modalElement) || new (window as any).bootstrap.Modal(modalElement);
+      modalInstance.hide();
+    }
+  });
+</script>
