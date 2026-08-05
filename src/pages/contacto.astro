@@ -6,17 +6,17 @@ import Footer from '../components/Footer.astro';
 // Redes y canales de contacto directo
 const canalesContacto = [
   {
-    titulo: "WhatsApp Directo",
-    descripcion: "Respuesta inmediata para emergencias y cotizaciones.",
+    titulo: "WhatsApp",
+    descripcion: "Canal directo para consultas y solicitudes de cotización.",
     icono: "bi-whatsapp",
     color: "bg-success text-white",
     btnColor: "btn-success",
     link: "https://wa.me/56922522593?text=Hola,%20quisiera%20hacer%20una%20consulta",
-    textoBtn: "Escribir al WhatsApp"
+    textoBtn: "Contactar por WhatsApp"
   },
   {
     titulo: "Instagram",
-    descripcion: "Mira nuestros tips y promociones.",
+    descripcion: "Conozca nuestras novedades e información de interés.",
     icono: "bi-instagram",
     color: "bg-danger text-white",
     btnColor: "btn-outline-danger",
@@ -25,7 +25,7 @@ const canalesContacto = [
   },
   {
     titulo: "Facebook",
-    descripcion: "Visita nuestro Facebook y revisa nuestras opiniones.",
+    descripcion: "Visite nuestra página y conozca las opiniones de nuestros clientes.",
     icono: "bi-facebook",
     color: "bg-primary text-white",
     btnColor: "btn-outline-primary",
@@ -45,9 +45,9 @@ const urlGoogleMaps = "https://maps.app.goo.gl/g5xKNWUCJiS8JWnG7";
     
     <!-- Encabezado -->
     <div class="text-center mb-5">
-      <h1 class="display-5 fw-bold text-primary">Ponte en Contacto</h1>
+      <h1 class="display-5 fw-bold text-primary">Contáctenos</h1>
       <p class="lead text-muted">
-        Estamos listos para atenderte. Comunícate a través de nuestras redes sociales o visítanos directamente.
+        Nuestro equipo se encuentra disponible para atender sus consultas. Comuníquese a través de nuestras redes sociales o visítenos en nuestro local.
       </p>
     </div>
 
@@ -107,7 +107,7 @@ const urlGoogleMaps = "https://maps.app.goo.gl/g5xKNWUCJiS8JWnG7";
                   <i class="bi bi-box-arrow-up-right text-primary small"></i>
                 </div>
                 <p class="text-secondary fw-bold m-0">Av. O'Higgins #0337, Quilicura</p>
-                <small class="text-muted">(Haz clic aquí para abrir Google Maps)</small>
+                <small class="text-muted">(Seleccione para abrir Google Maps)</small>
               </div>
             </a>
           </div>
@@ -141,8 +141,8 @@ const urlGoogleMaps = "https://maps.app.goo.gl/g5xKNWUCJiS8JWnG7";
       <!-- Formulario de Mensaje por WhatsApp -->
       <div class="col-lg-7">
         <div class="card h-100 shadow-sm border-0 p-4">
-          <h2 class="h3 fw-bold text-primary mb-3">Envíanos un Mensaje por WhatsApp</h2>
-          <p class="text-muted mb-4">Ingresa tus datos y al hacer clic te redirigiremos a WhatsApp con la información lista para enviar.</p>
+          <h2 class="h3 fw-bold text-primary mb-3">Envíenos un mensaje por WhatsApp</h2>
+          <p class="text-muted mb-4">Ingrese sus datos y será redirigido a WhatsApp con la información preparada para su envío.</p>
           
           <form id="whatsappForm">
             <div class="row g-3">
@@ -159,7 +159,7 @@ const urlGoogleMaps = "https://maps.app.goo.gl/g5xKNWUCJiS8JWnG7";
                 <input type="text" class="form-control" id="vehiculo" placeholder="Ej: Toyota Hilux 2020" />
               </div>
               <div class="col-12">
-                <label for="mensaje" class="form-label fw-bold">¿En qué te podemos ayudar?</label>
+                <label for="mensaje" class="form-label fw-bold">¿Cómo podemos ayudarle?</label>
                 <textarea class="form-control" id="mensaje" rows="4" placeholder="Ej: Necesito cotizar una batería de 60Ah o consultar por la reparación del motor de partida..." required></textarea>
               </div>
               <div class="col-12 mt-4">

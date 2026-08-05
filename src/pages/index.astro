@@ -7,23 +7,23 @@ import Footer from '../components/Footer.astro';
 const servicios = [
   {
     icono: "bi-tag",
-    titulo: "Precios Imbatibles",
-    descripcion: "Ofrecemos las tarifas más competitivas del mercado sin sacrificar calidad ni respaldo."
+    titulo: "Precios competitivos",
+    descripcion: "Ofrecemos valores competitivos, sin comprometer la calidad ni el respaldo de nuestros productos."
   },
   {
     icono: "bi-shield-check",
-    titulo: "Baterías 100% Garantizadas",
-    descripcion: "Solo trabajamos con marcas líderes de calidad comprobada con garantía de 6 a 12 meses."
+    titulo: "Baterías con garantía oficial",
+    descripcion: "Trabajamos exclusivamente con marcas líderes y productos de calidad comprobada, con garantía de 6 a 12 meses."
   },
   {
-    icono: "bi-truck",
-    titulo: "Instalación a Domicilio",
-    descripcion: "Coordinamos la visita hacia el local. Probamos, instalamos y dejamos tu auto perfecto."
+    icono: "bi-tools",
+    titulo: "Instalación en taller",
+    descripcion: "Realizamos la revisión e instalación de la batería de su vehículo en nuestro local."
   },
   {
     icono: "bi-arrow-repeat",
-    titulo: "Descuento por Tu Batería Usada",
-    descripcion: "Recibimos tu batería anterior al comprar la nueva y te hacemos un descuento directo en el acto."
+    titulo: "Descuento por batería usada",
+    descripcion: "Recibimos su batería anterior al adquirir una nueva y aplicamos el descuento correspondiente en su compra."
   }
 ];
 
@@ -34,23 +34,23 @@ const marcas = ["Troman", "ACDelco", "Bosch", "Premium", "TOPower"];
 const testimonios = [
   {
     nombre: "Carlos M.",
-    comentario: "Estuve cotizando en varias partes y aquí encontré por lejos el mejor precio para una batería Bosch original. Muy amables.",
+    comentario: "Recibí una cotización clara y una atención cordial. Encontré una excelente alternativa para mi batería Bosch.",
     auto: "Toyota RAV4"
   },
   {
     nombre: "Andrea S.",
-    comentario: "Excelente relación precio-calidad. Me explicaron súper bien qué amperaje necesitaba mi auto y no trataron de venderme algo más caro.",
+    comentario: "Excelente relación precio-calidad. Me explicaron claramente el amperaje adecuado para mi vehículo y me recomendaron una opción apropiada.",
     auto: "Hyundai Accent"
   },
   {
     nombre: "Roberto P.",
-    comentario: "Buenísimos precios y más con el descuento que hacen si dejas la batería vieja. Quedé súper conforme con la atención en taller.",
+    comentario: "Precios convenientes y un proceso transparente para aplicar el descuento por mi batería usada. Quedé muy conforme con la atención en el taller.",
     auto: "Chevrolet Sail"
   }
 ];
 ---
 
-<Layout title="El Bodegón de las Baterías - Los Mejores Precios y la Mejor Calidad">
+<Layout title="El Bodegón de las Baterías - Calidad y respaldo para su vehículo">
   <Navbar />
 
   <!-- 1. HERO SECTION -->
@@ -59,20 +59,20 @@ const testimonios = [
       <div class="row align-items-center g-5">
         <div class="col-lg-7">
           <span class="badge bg-warning fw-bold mb-3 px-3 py-2 text-uppercase fs-6" style="color: #000;">
-            <i class="bi bi-award-fill me-1"></i> La Mejor Relación Calidad - Precio
+            <i class="bi bi-award-fill me-1"></i> Excelente relación calidad-precio
           </span>
           <h1 class="display-3 fw-extrabold mb-3 lh-1">
-            Las mejores baterías del mercado <span class="text-warning">al precio más bajo.</span>
+            Baterías de calidad para su vehículo <span class="text-warning">con precios competitivos.</span>
           </h1>
           <p class="lead mb-4 fs-4 text-light opacity-90">
-            Marcas originales de máxima duración con garantía oficial. Atención en nuestro local.
+            Marcas originales, garantía oficial y asesoría especializada en nuestro local.
           </p>
           <div class="d-flex flex-column flex-sm-row gap-3">
             <a href="https://wa.me/56922522593?text=Hola,%20busco%20la%20batería%20más%20económica%20y%20de%20buena%20calidad%20para%20mi%20auto" target="_blank" class="btn btn-success btn-lg fw-bold px-4 py-3 shadow">
-              <i class="bi bi-whatsapp me-2 fs-5"></i> Cotizar por WhatsApp
+            <i class="bi bi-whatsapp me-2 fs-5"></i> Solicitar cotización por WhatsApp
             </a>
             <a href="/catalogo" class="btn btn-outline-light btn-lg fw-bold px-4 py-3">
-              <i class="bi bi-grid me-2"></i> Ver Catálogo de Precios
+              <i class="bi bi-grid me-2"></i> Consultar catálogo
             </a>
           </div>
         </div>
@@ -80,13 +80,13 @@ const testimonios = [
         <div class="col-lg-5 text-center">
           <div class="p-4 bg-white text-dark rounded-4 shadow-lg border border-light">
             <div class="badge bg-danger text-white mb-2 fs-6 px-3 py-2">
-              <i class="bi bi-percent me-1"></i> ¡Ahorra en tu compra!
+              <i class="bi bi-percent me-1"></i> Beneficio por batería usada
             </div>
             <i class="bi bi-ev-front-fill display-1 text-primary mb-2 d-block"></i>
-            <h2 class="h3 fw-bold mb-2">¿Quieres cotizar tu batería?</h2>
-            <p class="text-muted small mb-4">Escríbenos el modelo de tu vehículo y te daremos la opción con mejor precio garantizado.</p>
+            <h2 class="h3 fw-bold mb-2">¿Desea cotizar una batería?</h2>
+            <p class="text-muted small mb-4">Indíquenos el modelo de su vehículo y le recomendaremos una alternativa adecuada a sus requerimientos.</p>
             <a href="https://wa.me/56922522593?text=Hola,%20quisiera%20saber%20el%20precio%20de%20la%20batería%20para%20mi%20vehículo" target="_blank" class="btn btn-primary w-100 fw-bold py-2">
-              <i class="bi bi-telephone-fill me-1"></i> Consultar Precio
+              <i class="bi bi-telephone-fill me-1"></i> Solicitar cotización
             </a>
           </div>
         </div>
@@ -97,7 +97,7 @@ const testimonios = [
   <!-- BANDA DE GARANTÍA DE PRECIO Y CALIDAD -->
   <section class="bg-warning  py-3 fw-bold" style="color: #4b4242;">
     <div class="container text-center">
-      <i class="bi bi-check-circle-fill me-2"></i> Marcas originales 100% garantizadas • Los precios más convenientes con instalación y revisión técnica
+      <i class="bi bi-check-circle-fill me-2"></i> Marcas originales con garantía oficial, instalación y revisión técnica
     </div>
   </section>
 
@@ -117,8 +117,8 @@ const testimonios = [
   <section class="py-5 my-md-4">
     <div class="container">
       <div class="text-center max-w-xl mx-auto mb-5">
-        <h2 class="display-6 fw-bold text-primary">¿Por qué somos tu mejor opción?</h2>
-        <p class="lead text-muted">Combinamos precios bajos de competencias con un servicio de instalación confiable y rapido.</p>
+        <h2 class="display-6 fw-bold text-primary">¿Por qué elegirnos?</h2>
+        <p class="lead text-muted">Combinamos precios competitivos con diagnóstico y servicio técnico confiable en nuestro taller.</p>
       </div>
 
       <div class="row g-4">
@@ -145,15 +145,15 @@ const testimonios = [
       <div class="row align-items-center g-5">
         <div class="col-lg-6">
           <span class="text-primary fw-bold text-uppercase">Compra Segura</span>
-          <h2 class="display-6 fw-bold mb-4">Te ayudamos a no gastar de más</h2>
+          <h2 class="display-6 fw-bold mb-4">Le ayudamos a elegir la alternativa adecuada</h2>
 
           <div class="d-flex mb-4">
             <div class="me-3">
               <span class="badge bg-primary rounded-circle fs-5 p-3">1</span>
             </div>
             <div>
-              <h3 class="h5 fw-bold mb-1">Escríbenos por WhatsApp</h3>
-              <p class="text-muted mb-0">Envíanos el modelo, marca y año de tu auto.</p>
+              <h3 class="h5 fw-bold mb-1">Contáctenos por WhatsApp</h3>
+              <p class="text-muted mb-0">Envíenos el modelo, la marca y el año de su vehículo.</p>
             </div>
           </div>
 
@@ -162,8 +162,8 @@ const testimonios = [
               <span class="badge bg-primary rounded-circle fs-5 p-3">2</span>
             </div>
             <div>
-              <h3 class="h5 fw-bold mb-1">Recibe las mejores alternativas</h3>
-              <p class="text-muted mb-0">Te mostramos baterías de calidad premium y económicas, acordes a tu presupuesto.</p>
+              <h3 class="h5 fw-bold mb-1">Reciba alternativas recomendadas</h3>
+              <p class="text-muted mb-0">Le presentaremos opciones de calidad, acordes con sus requerimientos y presupuesto.</p>
             </div>
           </div>
 
@@ -172,8 +172,8 @@ const testimonios = [
               <span class="badge bg-primary rounded-circle fs-5 p-3">3</span>
             </div>
             <div>
-              <h3 class="h5 fw-bold mb-1">Instalación garantizada</h3>
-              <p class="text-muted mb-0">Te atendemos en nuestro local o coordinamos la entrega e instalación.</p>
+              <h3 class="h5 fw-bold mb-1">Instalación en nuestro taller</h3>
+              <p class="text-muted mb-0">Le atenderemos en nuestro local para realizar la revisión e instalación correspondiente.</p>
             </div>
           </div>
         </div>
@@ -181,10 +181,10 @@ const testimonios = [
         <div class="col-lg-6">
           <div class="bg-primary text-white p-5 rounded-4 shadow text-center position-relative">
             <i class="bi bi-piggy-bank display-1 mb-3 text-warning"></i>
-            <h3 class="fw-bold mb-3">¿Buscas el mejor precio?</h3>
-            <p class="mb-4">Cotiza hoy mismo y entrega tu batería antigua para obtener un descuento adicional.</p>
+            <h3 class="fw-bold mb-3">¿Busca una cotización?</h3>
+            <p class="mb-4">Solicite una cotización y entregue su batería antigua para acceder a un descuento adicional.</p>
             <a href="https://wa.me/56922522593?text=Hola,%20quiero%20cotizar%20mi%20batería%20al%20mejor%20precio" target="_blank" class="btn btn-warning btn-lg fw-bold px-4"  style="color: #4c5455;"  >
-              <i class="bi bi-whatsapp me-2"></i> Pedir Cotización
+              <i class="bi bi-whatsapp me-2"></i> Solicitar cotización
             </a>
           </div>
         </div>
@@ -198,7 +198,7 @@ const testimonios = [
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-5 gap-3">
         <div class="text-center text-md-start">
           <h2 class="display-6 fw-bold text-primary mb-1">Opiniones de nuestros clientes</h2>
-          <p class="text-muted mb-0">Quienes buscan economía y buena atención nos eligen.</p>
+          <p class="text-muted mb-0">La experiencia de quienes han confiado en nuestro servicio.</p>
         </div>
         <!-- BOTÓN PARA ABRIR EL MODAL DE OPINIÓN -->
         <button type="button" class="btn btn-warning fw-bold btn-lg rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#opinionModal" style="color: #4c5455;">
@@ -238,7 +238,7 @@ const testimonios = [
       <div class="modal-content rounded-4 border-0 shadow">
         <div class="modal-header bg-primary text-white">
           <h5 class="modal-title fw-bold" id="opinionModalLabel">
-            <i class="bi bi-chat-heart-fill text-warning me-2"></i> Tu opinión nos importa
+            <i class="bi bi-chat-heart-fill text-warning me-2"></i> Su opinión es importante para nosotros
           </h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
@@ -249,7 +249,7 @@ const testimonios = [
               <input type="text" id="inputNombre" class="form-control" placeholder="Ej: Marcela Gómez" required />
             </div>
             <div class="mb-3">
-              <label for="inputAuto" class="form-label fw-bold">Modelo de tu Auto (Opcional)</label>
+              <label for="inputAuto" class="form-label fw-bold">Modelo de su vehículo (opcional)</label>
               <input type="text" id="inputAuto" class="form-control" placeholder="Ej: Nissan Kicks 2021" />
             </div>
             <div class="mb-3">
@@ -261,8 +261,8 @@ const testimonios = [
               </select>
             </div>
             <div class="mb-3">
-              <label for="inputComentario" class="form-label fw-bold">Tu comentario</label>
-              <textarea id="inputComentario" class="form-control" rows="3" placeholder="Escribe aquí tus comentarios sobre nuestro precio o atención..." required></textarea>
+              <label for="inputComentario" class="form-label fw-bold">Su comentario</label>
+              <textarea id="inputComentario" class="form-control" rows="3" placeholder="Comparta su experiencia con nuestro servicio..." required></textarea>
             </div>
           </div>
           <div class="modal-footer bg-light border-0">
@@ -277,11 +277,11 @@ const testimonios = [
   <!-- 6. BANNER FINAL -->
   <section class="py-5 bg-dark text-white text-center">
     <div class="container py-4">
-      <h2 class="display-5 fw-bold mb-3">Renueva tu batería con confianza y al mejor costo</h2>
-      <p class="lead text-muted mb-4">Visítanos en nuestro local o agenda tu servicio.</p>
+      <h2 class="display-5 fw-bold mb-3">Renueve la batería de su vehículo con confianza</h2>
+      <p class="lead text-muted mb-4">Visítenos en nuestro local o coordine su atención.</p>
       <div class="d-flex justify-content-center gap-3 flex-wrap">
         <a href="/contacto" class="btn btn-primary btn-lg fw-bold px-4">
-          <i class="bi bi-geo-alt me-2"></i> Ver Ubicación y local
+          <i class="bi bi-geo-alt me-2"></i> Consultar ubicación
         </a>
         <a href="/catalogo" class="btn btn-outline-light btn-lg fw-bold px-4">
           <i class="bi bi-search me-2"></i> Ver Catálogo
