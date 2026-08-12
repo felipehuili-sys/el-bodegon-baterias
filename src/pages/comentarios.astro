@@ -5,10 +5,12 @@ import Footer from '../components/Footer.astro';
 import { supabase } from '../lib/supabase.js';
 
 // Traemos los comentarios desde Supabase, ordenados del más nuevo al más viejo
-const { data: comentarios, error } = await supabase
-  .from('comentarios')
-  .select('*')
-  .order('created_at', { ascending: false });
+const { data: comentarios, error } = supabase
+  ? await supabase
+      .from('comentarios')
+      .select('*')
+      .order('created_at', { ascending: false })
+  : { data: [], error: null };
 
 if (error) {
   console.error('Error al traer comentarios:', error.message);
@@ -119,6 +121,11 @@ if (error) {
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (!supabase) {
+      alert('El formulario de opiniones no estÃ¡ disponible en este momento. Intenta nuevamente mÃ¡s tarde.');
+      return;
+    }
 
     const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
     const nombre = (document.getElementById('inputNombre') as HTMLInputElement).value;
